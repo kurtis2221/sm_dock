@@ -54,7 +54,7 @@ namespace sm_dock
         protected override void OnMouseClick(MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            StateChange(GlobalHandler.IC_STATE_CLICK);
+            StateChange(GlobalHandler.IC_STATE_NORMAL);
             StartProgram(string.Empty);
             base.OnMouseClick(e);
         }
