@@ -140,7 +140,11 @@ namespace sm_dock_cfg
             if (!HandleUnsavedIcon()) return;
             list_move = true;
             int idx = li_icons.SelectedIndex;
-            if (idx == -1) return;
+            if (idx == -1)
+            {
+                list_move = false;
+                return;
+            }
             IconData ic = (IconData)li_icons.Items[idx];
             tb_ic_text.Text = ic.text;
             tb_ic_fname.Text = ic.filename;
@@ -154,6 +158,7 @@ namespace sm_dock_cfg
 
         private void bt_list_Click(object sender, EventArgs e)
         {
+            list_move = true;
             if (sender == bt_new)
             {
                 if (!HandleUnsavedIcon()) return;
@@ -182,6 +187,7 @@ namespace sm_dock_cfg
                 if (idx == -1) return;
                 li_icons.Items.RemoveAt(idx);
             }
+            list_move = false;
         }
 
         private void bt_updw_Click(object sender, EventArgs e)
