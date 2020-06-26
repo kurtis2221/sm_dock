@@ -32,53 +32,44 @@ namespace sm_dock
 
         protected override void OnMouseEnter(EventArgs e)
         {
-            if (GlobalHandler.dock_nam)
-            {
-                tt.Visible = true;
-                tt.SetText(this, pr_name);
-            }
-            state = GlobalHandler.IC_STATE_HOVER;
-            Invalidate();
+            ShowName();
+            StateChange(GlobalHandler.IC_STATE_HOVER);
             base.OnMouseEnter(e);
         }
 
         protected override void OnMouseLeave(EventArgs e)
         {
             if (GlobalHandler.dock_nam) tt.Visible = false;
-            state = GlobalHandler.IC_STATE_NORMAL;
-            Invalidate();
+            StateChange(GlobalHandler.IC_STATE_NORMAL);
             base.OnMouseLeave(e);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            state = GlobalHandler.IC_STATE_CLICK;
-            Invalidate();
+            StateChange(GlobalHandler.IC_STATE_CLICK);
             base.OnMouseDown(e);
         }
 
         protected override void OnMouseClick(MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            state = GlobalHandler.IC_STATE_NORMAL;
-            Invalidate();
+            StateChange(GlobalHandler.IC_STATE_CLICK);
             StartProgram(string.Empty);
             base.OnMouseClick(e);
         }
 
         protected override void OnDragEnter(DragEventArgs e)
         {
-            state = GlobalHandler.IC_STATE_HOVER;
-            Invalidate();
+            ShowName();
+            StateChange(GlobalHandler.IC_STATE_HOVER);
             e.Effect = DragDropEffects.Copy;
             base.OnDragEnter(e);
         }
 
         protected override void OnDragDrop(DragEventArgs e)
         {
-            state = GlobalHandler.IC_STATE_CLICK;
-            Invalidate();
+            StateChange(GlobalHandler.IC_STATE_CLICK);
             string[] args = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             StartProgram(string.Join(" ", args));
             base.OnDragDrop(e);
@@ -112,6 +103,21 @@ namespace sm_dock
                     GlobalHandler.icon_size);
             }
             base.OnPaint(e);
+        }
+
+        private void ShowName()
+        {
+            if (GlobalHandler.dock_nam)
+            {
+                tt.Visible = true;
+                tt.SetText(this, pr_name);
+            }
+        }
+
+        private void StateChange(int input)
+        {
+            state = input;
+            Invalidate();
         }
 
         private void StartProgram(string args)
