@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sm_dock", "sm_dock\sm_dock.csproj", "{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sm_dock_cfg", "sm_dock_cfg\sm_dock_cfg.csproj", "{A4EAC1BC-7349-421F-8128-3F4496149D42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}.Debug|x64.ActiveCfg = Debug|x64
+		{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}.Debug|x64.Build.0 = Debug|x64
+		{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}.Debug|x86.ActiveCfg = Debug|x86
+		{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}.Debug|x86.Build.0 = Debug|x86
+		{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}.Release|Any CPU.ActiveCfg = Release|x86
+		{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}.Release|x64.ActiveCfg = Release|x64
+		{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}.Release|x64.Build.0 = Release|x64
+		{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}.Release|x86.ActiveCfg = Release|x86
+		{52DBFCE3-8BEF-4FBC-8D50-18F538E6A9AF}.Release|x86.Build.0 = Release|x86
+		{A4EAC1BC-7349-421F-8128-3F4496149D42}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A4EAC1BC-7349-421F-8128-3F4496149D42}.Debug|x64.ActiveCfg = Debug|x64
+		{A4EAC1BC-7349-421F-8128-3F4496149D42}.Debug|x64.Build.0 = Debug|x64
+		{A4EAC1BC-7349-421F-8128-3F4496149D42}.Debug|x86.ActiveCfg = Debug|x86
+		{A4EAC1BC-7349-421F-8128-3F4496149D42}.Debug|x86.Build.0 = Debug|x86
+		{A4EAC1BC-7349-421F-8128-3F4496149D42}.Release|Any CPU.ActiveCfg = Release|x86
+		{A4EAC1BC-7349-421F-8128-3F4496149D42}.Release|x64.ActiveCfg = Release|x64
+		{A4EAC1BC-7349-421F-8128-3F4496149D42}.Release|x64.Build.0 = Release|x64
+		{A4EAC1BC-7349-421F-8128-3F4496149D42}.Release|x86.ActiveCfg = Release|x86
+		{A4EAC1BC-7349-421F-8128-3F4496149D42}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CD4404C-6F89-438A-87A1-54F56C5069EA}
+	EndGlobalSection
+EndGlobal
