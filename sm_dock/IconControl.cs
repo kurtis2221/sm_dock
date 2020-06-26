@@ -69,12 +69,16 @@ namespace sm_dock
 
         protected override void OnDragEnter(DragEventArgs e)
         {
+            state = GlobalHandler.IC_STATE_HOVER;
+            Invalidate();
             e.Effect = DragDropEffects.Copy;
             base.OnDragEnter(e);
         }
 
         protected override void OnDragDrop(DragEventArgs e)
         {
+            state = GlobalHandler.IC_STATE_CLICK;
+            Invalidate();
             string[] args = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             StartProgram(string.Join(" ", args));
             base.OnDragDrop(e);
