@@ -67,6 +67,13 @@ namespace sm_dock
             base.OnDragEnter(e);
         }
 
+        protected override void OnDragLeave(EventArgs e)
+        {
+            if (GlobalHandler.dock_nam) tt.Visible = false;
+            StateChange(GlobalHandler.IC_STATE_NORMAL);
+            base.OnDragLeave(e);
+        }
+
         protected override void OnDragDrop(DragEventArgs e)
         {
             StateChange(GlobalHandler.IC_STATE_CLICK);

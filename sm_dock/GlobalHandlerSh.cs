@@ -140,7 +140,7 @@ namespace sm_dock
             txt_fg = Color.FromArgb(ParseInt(cols[SET_TXT_FGCOLOR], true));
             txt_bg = Color.FromArgb(ParseInt(cols[SET_TXT_BGCOLOR], true));
             txt_fnt = new Font(new FontFamily(cols[SET_TXT_FONT]),
-                ParseInt(cols[SET_TXT_FONT_SZ]),
+                ParseFloat(cols[SET_TXT_FONT_SZ], 10),
                 (FontStyle)ParseInt(cols[SET_TXT_FONT_ST]));
             icon_size = ParseInt(cols[SET_ICONSIZE]);
             icon_pad = ParseInt(cols[SET_PADDING]);
@@ -155,6 +155,13 @@ namespace sm_dock
             dock_autoh_cl = ParseBool(cols[SET_AUTOH_CL]);
             dock_autoh_sn = ParseInt(cols[SET_AUTOH_SN]);
             dock_autoh_iv = ParseInt(cols[SET_AUTOH_IV]);
+        }
+
+        private static float ParseFloat(string input, float def)
+        {
+            float res;
+            if (!float.TryParse(input, out res)) res = def;
+            return res;
         }
 
         private static int ParseInt(string input, bool hex = false)

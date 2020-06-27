@@ -85,6 +85,7 @@ namespace sm_dock_cfg
 
         private void bt_font_Click(object sender, EventArgs e)
         {
+            dl_font.Font = GlobalHandler.txt_fnt;
             if (dl_font.ShowDialog() == DialogResult.OK)
             {
                 GlobalHandler.txt_fnt = dl_font.Font;
