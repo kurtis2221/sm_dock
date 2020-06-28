@@ -43,7 +43,7 @@ namespace sm_dock
             int sc_size;
             int size = GlobalHandler.icon_pad + img_count * (GlobalHandler.icon_size + GlobalHandler.icon_pad);
             int bottom;
-            int frm_size = GlobalHandler.icon_size + GlobalHandler.icon_line + GlobalHandler.icon_pad * 2;
+            int frm_size = GlobalHandler.icon_size + GlobalHandler.icon_line;
             if (GlobalHandler.dock_pos < 2)
             {
                 sc_size = Screen.PrimaryScreen.Bounds.Width;

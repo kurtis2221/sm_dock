@@ -55,14 +55,14 @@ namespace sm_dock
                         {
                             icon.SetBounds(
                                 icon_pad + i * (icon_size + icon_pad),
-                                icon_pad,
+                                0,
                                 icon_size,
                                 icon_size + icon_line);
                         }
                         else
                         {
                             icon.SetBounds(
-                                icon_pad,
+                                0,
                                 icon_pad + i * (icon_size + icon_pad),
                                 icon_size + icon_line,
                                 icon_size);
