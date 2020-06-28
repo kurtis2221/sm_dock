@@ -20,7 +20,7 @@ namespace sm_dock
             {
                 int img_count = 0;
                 img_count = GlobalHandler.LoadIcons(this);
-                if(img_count == 0)
+                if (img_count == 0)
                 {
                     GlobalHandler.ErrorMsg("No icons are added to the dock. Exiting.");
                     Environment.Exit(0);
@@ -54,8 +54,8 @@ namespace sm_dock
                     size,
                     frm_size);
                 autoh_rect = Bounds;
-                if (GlobalHandler.dock_pos == 1) autoh_rect.Y = autoh_rect.Bottom;
-                autoh_rect.Height = 2;
+                if (GlobalHandler.dock_pos == 1) autoh_rect.Y = autoh_rect.Bottom - GlobalHandler.dock_autoh_sn;
+                autoh_rect.Height = GlobalHandler.dock_autoh_sn;
             }
             else
             {
@@ -67,8 +67,8 @@ namespace sm_dock
                     frm_size,
                     size);
                 autoh_rect = Bounds;
-                if (GlobalHandler.dock_pos == 3) autoh_rect.X = autoh_rect.Right;
-                autoh_rect.Width = 2;
+                if (GlobalHandler.dock_pos == 3) autoh_rect.X = autoh_rect.Right - GlobalHandler.dock_autoh_sn;
+                autoh_rect.Width = GlobalHandler.dock_autoh_sn;
             }
             ShowInTaskbar = false;
             BackColor = GlobalHandler.icon_col[0].Color;
