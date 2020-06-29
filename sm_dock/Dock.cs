@@ -71,7 +71,7 @@ namespace sm_dock
                 autoh_rect.Width = GlobalHandler.dock_autoh_sn;
             }
             ShowInTaskbar = false;
-            BackColor = GlobalHandler.icon_col[0].Color;
+            BackColor = GlobalHandler.icon_col[GlobalHandler.IC_STATE_NORMAL].Color;
             TopMost = GlobalHandler.dock_top;
             ResumeLayout();
             //Helpers
