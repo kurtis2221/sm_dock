@@ -26,7 +26,6 @@ namespace sm_dock
             SetAutoSizeMode(AutoSizeMode.GrowAndShrink);
             Controls.Add(lb);
             AutoSize = true;
-            TopMost = GlobalHandler.dock_top;
             ResumeLayout();
             ShowInTaskbar = false;
         }
@@ -56,7 +55,7 @@ namespace sm_dock
             get
             {
                 CreateParams par = base.CreateParams;
-                par.ExStyle |= 0x80;
+                par.ExStyle |= GlobalHandler.window_style;
                 return par;
             }
         }

@@ -109,6 +109,7 @@ namespace sm_dock
         public static bool dock_autoh_cl;
         public static int dock_autoh_sn;
         public static int dock_autoh_iv;
+        public static int window_style;
 
         //Smoothing levels
         public static InterpolationMode[] icon_interp =
@@ -151,6 +152,8 @@ namespace sm_dock
             dock_offs = ParseInt(cols[SET_POS_OFFS]);
             dock_nam = ParseBool(cols[SET_NAMES]);
             dock_top = ParseBool(cols[SET_TOP]);
+            window_style = 0x80;
+            if (dock_top) window_style |= 0x8;
             dock_autoh = ParseBool(cols[SET_AUTOH]);
             dock_autoh_cl = ParseBool(cols[SET_AUTOH_CL]);
             dock_autoh_sn = ParseInt(cols[SET_AUTOH_SN]);

@@ -72,7 +72,6 @@ namespace sm_dock
             }
             ShowInTaskbar = false;
             BackColor = GlobalHandler.icon_col[GlobalHandler.IC_STATE_NORMAL].Color;
-            TopMost = GlobalHandler.dock_top;
             ResumeLayout();
             //Helpers
             GlobalHandler.width = Width;
@@ -116,7 +115,7 @@ namespace sm_dock
             get
             {
                 CreateParams par = base.CreateParams;
-                par.ExStyle |= 0x80;
+                par.ExStyle |= GlobalHandler.window_style;
                 return par;
             }
         }
