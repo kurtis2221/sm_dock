@@ -77,8 +77,13 @@ namespace sm_dock
         protected override void OnDragDrop(DragEventArgs e)
         {
             StateChange(GlobalHandler.IC_STATE_CLICK);
-            string[] args = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            StartProgram(string.Join(" ", args));
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            string args = string.Empty;
+            for(int i = 0; i < files.Length; i++)
+            {
+                args += " \"" + files[i] + "\"";
+            }
+            StartProgram(args);
             base.OnDragDrop(e);
         }
 
@@ -135,7 +140,7 @@ namespace sm_dock
             {
                 ProcessStartInfo psi = new ProcessStartInfo();
                 psi.FileName = pr_file;
-                psi.Arguments = pr_args + " " + args;
+                psi.Arguments = pr_args + args;
                 psi.WindowStyle = pr_window;
                 if (pr_work.Length > 0) psi.WorkingDirectory = pr_work;
                 psi.UseShellExecute = true;
