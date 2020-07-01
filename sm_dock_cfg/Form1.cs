@@ -9,8 +9,8 @@ namespace sm_dock_cfg
 {
     public partial class Form1 : Form
     {
-        bool unsaved_icons;
-        bool list_move;
+        private bool unsaved_icons;
+        private bool list_move;
 
         public Form1()
         {
@@ -284,24 +284,32 @@ namespace sm_dock_cfg
 
         private void LoadData()
         {
-            lb_bg_n.BackColor = GlobalHandler.icon_col[GlobalHandler.IC_STATE_NORMAL].Color;
-            lb_bg_h.BackColor = GlobalHandler.icon_col[GlobalHandler.IC_STATE_HOVER].Color;
-            lb_bg_c.BackColor = GlobalHandler.icon_col[GlobalHandler.IC_STATE_CLICK].Color;
-            lb_txt_fg.BackColor = GlobalHandler.txt_fg;
-            lb_txt_bg.BackColor = GlobalHandler.txt_bg;
-            //Font is directly loaded
-            nm_ic_size.Value = GlobalHandler.icon_size;
-            nm_ic_pad.Value = GlobalHandler.icon_pad;
-            nm_ic_line.Value = GlobalHandler.icon_line;
-            cb_smooth.SelectedIndex = GlobalHandler.icon_sm_idx;
-            cb_pos.SelectedIndex = GlobalHandler.dock_pos;
-            nm_offset.Value = GlobalHandler.dock_offs;
-            ch_names.Checked = GlobalHandler.dock_nam;
-            ch_top.Checked = GlobalHandler.dock_top;
-            ch_autoh.Checked = GlobalHandler.dock_autoh;
-            ch_autoh_cl.Checked = GlobalHandler.dock_autoh_cl;
-            nm_autoh_sn.Value = GlobalHandler.dock_autoh_sn;
-            nm_autoh_iv.Value = GlobalHandler.dock_autoh_iv;
+            try
+            {
+                lb_bg_n.BackColor = GlobalHandler.icon_col[GlobalHandler.IC_STATE_NORMAL].Color;
+                lb_bg_h.BackColor = GlobalHandler.icon_col[GlobalHandler.IC_STATE_HOVER].Color;
+                lb_bg_c.BackColor = GlobalHandler.icon_col[GlobalHandler.IC_STATE_CLICK].Color;
+                lb_txt_fg.BackColor = GlobalHandler.txt_fg;
+                lb_txt_bg.BackColor = GlobalHandler.txt_bg;
+                //Font is directly loaded
+                nm_ic_size.Value = GlobalHandler.icon_size;
+                nm_ic_pad.Value = GlobalHandler.icon_pad;
+                nm_ic_line.Value = GlobalHandler.icon_line;
+                cb_smooth.SelectedIndex = GlobalHandler.icon_sm_idx;
+                cb_pos.SelectedIndex = GlobalHandler.dock_pos;
+                nm_offset.Value = GlobalHandler.dock_offs;
+                ch_names.Checked = GlobalHandler.dock_nam;
+                ch_top.Checked = GlobalHandler.dock_top;
+                ch_autoh.Checked = GlobalHandler.dock_autoh;
+                ch_autoh_cl.Checked = GlobalHandler.dock_autoh_cl;
+                nm_autoh_sn.Value = GlobalHandler.dock_autoh_sn;
+                nm_autoh_iv.Value = GlobalHandler.dock_autoh_iv;
+                nm_autoh_de.Value = GlobalHandler.dock_autoh_de;
+            }
+            catch (Exception ex)
+            {
+                GlobalHandler.ErrorMsg("Error while loading: " + GlobalHandler.CFG_FILE + "\n" + ex.Message);
+            }
             li_icons.Items.Clear();
             foreach (IconData ic in GlobalHandler.icon_list)
             {
@@ -330,6 +338,7 @@ namespace sm_dock_cfg
             GlobalHandler.dock_autoh_cl = ch_autoh_cl.Checked;
             GlobalHandler.dock_autoh_sn = (int)nm_autoh_sn.Value;
             GlobalHandler.dock_autoh_iv = (int)nm_autoh_iv.Value;
+            GlobalHandler.dock_autoh_de = (int)nm_autoh_de.Value;
             GlobalHandler.icon_list.Clear();
             foreach (IconData ic in li_icons.Items)
             {

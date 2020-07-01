@@ -95,6 +95,8 @@
             this.cb_smooth = new System.Windows.Forms.ComboBox();
             this.cb_ic_win = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.nm_autoh_de = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nm_ic_icnm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nm_ic_size)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nm_ic_pad)).BeginInit();
@@ -102,6 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nm_autoh_sn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nm_autoh_iv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nm_offset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nm_autoh_de)).BeginInit();
             this.SuspendLayout();
             // 
             // li_icons
@@ -118,7 +121,7 @@
             this.bt_save.Location = new System.Drawing.Point(672, 448);
             this.bt_save.Name = "bt_save";
             this.bt_save.Size = new System.Drawing.Size(100, 24);
-            this.bt_save.TabIndex = 35;
+            this.bt_save.TabIndex = 36;
             this.bt_save.Text = "Save Config";
             this.bt_save.UseVisualStyleBackColor = true;
             this.bt_save.Click += new System.EventHandler(this.bt_save_Click);
@@ -350,7 +353,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(490, 388);
+            this.label21.Location = new System.Drawing.Point(490, 390);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(42, 13);
             this.label21.TabIndex = 8;
@@ -687,7 +690,7 @@
             this.bt_cache.Location = new System.Drawing.Point(566, 448);
             this.bt_cache.Name = "bt_cache";
             this.bt_cache.Size = new System.Drawing.Size(100, 24);
-            this.bt_cache.TabIndex = 34;
+            this.bt_cache.TabIndex = 35;
             this.bt_cache.Text = "Generate cache";
             this.bt_cache.UseVisualStyleBackColor = true;
             this.bt_cache.Click += new System.EventHandler(this.bt_cache_Click);
@@ -783,6 +786,37 @@
             this.label19.TabIndex = 2;
             this.label19.Text = "Window";
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(490, 416);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(34, 13);
+            this.label23.TabIndex = 8;
+            this.label23.Text = "Delay";
+            // 
+            // nm_autoh_de
+            // 
+            this.nm_autoh_de.Location = new System.Drawing.Point(573, 414);
+            this.nm_autoh_de.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nm_autoh_de.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nm_autoh_de.Name = "nm_autoh_de";
+            this.nm_autoh_de.Size = new System.Drawing.Size(45, 20);
+            this.nm_autoh_de.TabIndex = 34;
+            this.nm_autoh_de.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -798,6 +832,7 @@
             this.Controls.Add(this.bt_icon);
             this.Controls.Add(this.bt_fname);
             this.Controls.Add(this.bt_bg_n);
+            this.Controls.Add(this.nm_autoh_de);
             this.Controls.Add(this.nm_autoh_iv);
             this.Controls.Add(this.nm_autoh_sn);
             this.Controls.Add(this.ch_autoh_cl);
@@ -812,6 +847,7 @@
             this.Controls.Add(this.nm_ic_line);
             this.Controls.Add(this.nm_ic_pad);
             this.Controls.Add(this.nm_ic_size);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label11);
@@ -862,6 +898,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nm_autoh_sn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nm_autoh_iv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nm_offset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nm_autoh_de)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -936,6 +973,8 @@
         private System.Windows.Forms.ComboBox cb_smooth;
         private System.Windows.Forms.ComboBox cb_ic_win;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.NumericUpDown nm_autoh_de;
     }
 }
 

@@ -83,7 +83,15 @@ namespace sm_dock
         {
             using (StreamReader sr = new StreamReader(CFG_FILE, DEF_ENC))
             {
-                LoadData(sr);
+                try
+                {
+                    LoadData(sr);
+                }
+                catch (Exception ex)
+                {
+                    ErrorMsg("Error while loading Dock configuration:\n" + ex.Message
+                        + "\nSome options may have been reset.");
+                }
                 string[] cols;
                 while (sr.Peek() > -1)
                 {
@@ -125,7 +133,8 @@ namespace sm_dock
                     BoolToStr(dock_autoh) + CFG_DELIM +
                     BoolToStr(dock_autoh_cl) + CFG_DELIM +
                     dock_autoh_sn + CFG_DELIM +
-                    dock_autoh_iv);
+                    dock_autoh_iv + CFG_DELIM +
+                    dock_autoh_de);
                 //Icons
                 foreach (IconData ic in icon_list)
                 {

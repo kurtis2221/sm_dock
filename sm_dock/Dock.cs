@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace sm_dock
@@ -11,7 +10,18 @@ namespace sm_dock
         //Avoid focus stealing
         protected override bool ShowWithoutActivation => true;
 
+        //Load error levels
+        private static string[] err_lvl =
+        {
+            "Please reconfigure the Dock!",
+            "Please generate a new icon cache!"
+        };
+
+        //Autohide timer
         private Timer tmr;
+        //Autohide delay timer
+        private Timer vis_tmr;
+        //Autohide trigger rectangle
         private Rectangle autoh_rect;
 
         public Dock()
@@ -29,7 +39,8 @@ namespace sm_dock
             }
             catch (Exception ex)
             {
-                GlobalHandler.ErrorMsg("Error while initializing:\n" + ex.Message + "\nPlease generate a new icon cache!");
+                GlobalHandler.ErrorMsg("Error while initializing:\n" + ex.Message +
+                    "\n" + err_lvl[GlobalHandler.load_lvl]);
                 Environment.Exit(0);
             }
         }
@@ -41,9 +52,9 @@ namespace sm_dock
             FormBorderStyle = FormBorderStyle.None;
             StartPosition = FormStartPosition.Manual;
             int sc_size;
-            int size = GlobalHandler.icon_pad + img_count * (GlobalHandler.icon_size + GlobalHandler.icon_pad);
+            int size = img_count * GlobalHandler.icon_nsize;
             int bottom;
-            int frm_size = GlobalHandler.icon_size + GlobalHandler.icon_line;
+            int frm_size = GlobalHandler.icon_nsize + GlobalHandler.icon_line;
             if (GlobalHandler.dock_pos < 2)
             {
                 sc_size = Screen.PrimaryScreen.Bounds.Width;
@@ -86,28 +97,31 @@ namespace sm_dock
                 tmr = new Timer();
                 tmr.Interval = GlobalHandler.dock_autoh_iv;
                 tmr.Enabled = true;
-                tmr.Tick += Tmr_Tick;
+                tmr.Tick += tmr_Tick;
+                vis_tmr = new Timer();
+                vis_tmr.Interval = GlobalHandler.dock_autoh_de;
+                vis_tmr.Tick += vis_tmr_Tick;
             }
         }
 
-        private void Tmr_Tick(object sender, EventArgs e)
+        private void tmr_Tick(object sender, EventArgs e)
         {
             bool click = !GlobalHandler.dock_autoh_cl || MouseButtons.HasFlag(MouseButtons.Left);
             Point pt = MousePosition;
             if (Visible)
             {
-                if (!Bounds.Contains(pt))
-                {
-                    Visible = false;
-                }
+                vis_tmr.Enabled = !Bounds.Contains(pt);
             }
             else
             {
-                if (autoh_rect.Contains(pt) && click)
-                {
-                    Visible = true;
-                }
+                vis_tmr.Enabled = autoh_rect.Contains(pt) && click;
             }
+        }
+
+        private void vis_tmr_Tick(object sender, EventArgs e)
+        {
+            vis_tmr.Enabled = false;
+            Visible = !Visible;
         }
 
         protected override CreateParams CreateParams

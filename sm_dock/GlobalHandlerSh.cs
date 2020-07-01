@@ -35,7 +35,8 @@ namespace sm_dock
         //17 - Autohide with mouse click
         //18 - Autohide sensitivity
         //19 - Autohide interval
-        const int SET_DATA_LEN = 20;
+        //20 - Autohide delay
+        const int SET_DATA_LEN = 21;
         const int SET_N_BGCOLOR = 0;
         const int SET_H_BGCOLOR = 1;
         const int SET_C_BGCOLOR = 2;
@@ -56,6 +57,7 @@ namespace sm_dock
         const int SET_AUTOH_CL = 17;
         const int SET_AUTOH_SN = 18;
         const int SET_AUTOH_IV = 19;
+        const int SET_AUTOH_DE = 20;
 
         //Icon data indexes
         //0 - Text
@@ -109,6 +111,7 @@ namespace sm_dock
         public static bool dock_autoh_cl;
         public static int dock_autoh_sn;
         public static int dock_autoh_iv;
+        public static int dock_autoh_de;
         public static int window_style;
 
         //Smoothing levels
@@ -158,6 +161,7 @@ namespace sm_dock
             dock_autoh_cl = ParseBool(cols[SET_AUTOH_CL]);
             dock_autoh_sn = ParseInt(cols[SET_AUTOH_SN]);
             dock_autoh_iv = ParseInt(cols[SET_AUTOH_IV]);
+            dock_autoh_de = ParseInt(cols[SET_AUTOH_DE]);
         }
 
         private static float ParseFloat(string input, float def)

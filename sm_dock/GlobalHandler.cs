@@ -14,17 +14,26 @@ namespace sm_dock
         public static int top;
         public static int right;
         public static int bottom;
+        //Half-size
         public static int icon_hsize;
+        //Size with padding
+        public static int icon_nsize;
+
+        //Error message on load
+        public static int load_lvl;
 
         public static int LoadIcons(Dock dock)
         {
+            load_lvl = 0;
             //The icon cache must be consistent with the ini file, otherwise errors will occour
             List<int> img_addrs = new List<int>();
             int img_count;
             using (StreamReader sr = new StreamReader(CFG_FILE, DEF_ENC))
             {
                 LoadData(sr);
+                load_lvl = 1;
                 icon_hsize = icon_size / 2;
+                icon_nsize = icon_size + 2 * icon_pad;
                 using (BinaryReader br = new BinaryReader(new FileStream(CACHE_FILE, FileMode.Open, FileAccess.Read), DEF_ENC))
                 {
                     //Reading file pointers
@@ -54,18 +63,18 @@ namespace sm_dock
                         if (dock_pos < 2)
                         {
                             icon.SetBounds(
-                                icon_pad + i * (icon_size + icon_pad),
+                                i * icon_nsize,
                                 0,
-                                icon_size,
-                                icon_size + icon_line);
+                                icon_nsize,
+                                icon_nsize + icon_line);
                         }
                         else
                         {
                             icon.SetBounds(
                                 0,
-                                icon_pad + i * (icon_size + icon_pad),
-                                icon_size + icon_line,
-                                icon_size);
+                                i * icon_nsize,
+                                icon_nsize + icon_line,
+                                icon_nsize);
                         }
                         dock.Controls.Add(icon);
                     }

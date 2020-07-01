@@ -90,24 +90,26 @@ namespace sm_dock
             g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.None;
             int offsx = GlobalHandler.dock_pos == 3 ? GlobalHandler.icon_line : 0;
             int offsy = GlobalHandler.dock_pos == 1 ? GlobalHandler.icon_line : 0;
+            offsx += GlobalHandler.icon_pad;
+            offsy += GlobalHandler.icon_pad;
             g.DrawImage(bg_img, offsx, offsy, GlobalHandler.icon_size, GlobalHandler.icon_size);
             if (GlobalHandler.dock_pos < 2)
             {
                 g.FillRectangle(
                     GlobalHandler.icon_col[state],
                     0,
-                    GlobalHandler.dock_pos == 0 ? GlobalHandler.icon_size : 0,
-                    GlobalHandler.icon_size,
+                    GlobalHandler.dock_pos == 0 ? GlobalHandler.icon_nsize : 0,
+                    GlobalHandler.icon_nsize,
                     GlobalHandler.icon_line);
             }
             else
             {
                 g.FillRectangle(
                     GlobalHandler.icon_col[state],
-                    GlobalHandler.dock_pos == 2 ? GlobalHandler.icon_size : 0,
+                    GlobalHandler.dock_pos == 2 ? GlobalHandler.icon_nsize : 0,
                     0,
                     GlobalHandler.icon_line,
-                    GlobalHandler.icon_size);
+                    GlobalHandler.icon_nsize);
             }
             base.OnPaint(e);
         }
@@ -129,13 +131,20 @@ namespace sm_dock
 
         private void StartProgram(string args)
         {
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = pr_file;
-            psi.Arguments = pr_args + " " + args;
-            psi.WindowStyle = pr_window;
-            if (pr_work.Length > 0) psi.WorkingDirectory = pr_work;
-            psi.UseShellExecute = true;
-            Process.Start(psi);
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.FileName = pr_file;
+                psi.Arguments = pr_args + " " + args;
+                psi.WindowStyle = pr_window;
+                if (pr_work.Length > 0) psi.WorkingDirectory = pr_work;
+                psi.UseShellExecute = true;
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                GlobalHandler.ErrorMsg("Error while starting process:\n" + ex.Message);
+            }
         }
     }
 }
