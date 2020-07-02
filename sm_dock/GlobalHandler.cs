@@ -32,8 +32,8 @@ namespace sm_dock
             {
                 LoadData(sr);
                 load_lvl = 1;
-                icon_hsize = icon_size / 2;
                 icon_nsize = icon_size + 2 * icon_pad;
+                icon_hsize = icon_nsize / 2;
                 using (BinaryReader br = new BinaryReader(new FileStream(CACHE_FILE, FileMode.Open, FileAccess.Read), DEF_ENC))
                 {
                     //Reading file pointers
