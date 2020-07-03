@@ -47,7 +47,6 @@ namespace sm_dock
 
         private void SetUpDock(int img_count)
         {
-            Visible = false;
             SuspendLayout();
             Text = GlobalHandler.PROG_NAME;
             FormBorderStyle = FormBorderStyle.None;
@@ -104,7 +103,6 @@ namespace sm_dock
                 vis_tmr.Interval = GlobalHandler.dock_autoh_de;
                 vis_tmr.Tick += vis_tmr_Tick;
             }
-            Visible = true;
         }
 
         private void tmr_Tick(object sender, EventArgs e)
