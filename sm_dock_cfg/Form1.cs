@@ -184,6 +184,11 @@ namespace sm_dock_cfg
             }
             else //if(sender == bt_del)
             {
+                if (MessageBox.Show("Are you sure you want to delete this item?",
+                    GlobalHandler.PROG_NAME, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                {
+                    return;
+                }
                 int idx = li_icons.SelectedIndex;
                 if (idx == -1) return;
                 li_icons.Items.RemoveAt(idx);
@@ -236,8 +241,8 @@ namespace sm_dock_cfg
         {
             if (unsaved_icons)
             {
-                if (MessageBox.Show("Discard icon changes?", GlobalHandler.PROG_NAME,
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show("Discard icon changes?",
+                    GlobalHandler.PROG_NAME, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 {
                     return false;
                 }

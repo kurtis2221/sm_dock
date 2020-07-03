@@ -47,7 +47,7 @@ namespace sm_dock
                 else x = GlobalHandler.left - Width;
                 y = pt.Y + GlobalHandler.icon_hsize - Height / 2;
             }
-            SetDesktopLocation(x, y);
+            Location = new Point(x, y);
         }
 
         protected override CreateParams CreateParams

@@ -47,6 +47,7 @@ namespace sm_dock
 
         private void SetUpDock(int img_count)
         {
+            Visible = false;
             SuspendLayout();
             Text = GlobalHandler.PROG_NAME;
             FormBorderStyle = FormBorderStyle.None;
@@ -55,13 +56,14 @@ namespace sm_dock
             int size = img_count * GlobalHandler.icon_nsize;
             int bottom;
             int frm_size = GlobalHandler.icon_nsize + GlobalHandler.icon_line;
+            Screen curr_sc = Screen.PrimaryScreen;
             if (GlobalHandler.dock_pos < 2)
             {
-                sc_size = Screen.PrimaryScreen.Bounds.Width;
-                bottom = GlobalHandler.dock_pos == 0 ? 0 : Screen.PrimaryScreen.Bounds.Height - frm_size;
+                sc_size = curr_sc.Bounds.Width;
+                bottom = GlobalHandler.dock_pos == 0 ? 0 : curr_sc.Bounds.Height - frm_size;
                 SetBounds(
-                    sc_size / 2 - size / 2 + GlobalHandler.dock_offs,
-                    bottom,
+                    curr_sc.Bounds.X + sc_size / 2 - size / 2 + GlobalHandler.dock_offs,
+                    curr_sc.Bounds.Y + bottom,
                     size,
                     frm_size);
                 autoh_rect = Bounds;
@@ -70,11 +72,11 @@ namespace sm_dock
             }
             else
             {
-                sc_size = Screen.PrimaryScreen.Bounds.Height;
-                bottom = GlobalHandler.dock_pos == 2 ? 0 : Screen.PrimaryScreen.Bounds.Width - frm_size;
+                sc_size = curr_sc.Bounds.Height;
+                bottom = GlobalHandler.dock_pos == 2 ? 0 : curr_sc.Bounds.Width - frm_size;
                 SetBounds(
-                    bottom,
-                    sc_size / 2 - size / 2 + GlobalHandler.dock_offs,
+                    curr_sc.Bounds.X + bottom,
+                    curr_sc.Bounds.Y + sc_size / 2 - size / 2 + GlobalHandler.dock_offs,
                     frm_size,
                     size);
                 autoh_rect = Bounds;
@@ -102,6 +104,7 @@ namespace sm_dock
                 vis_tmr.Interval = GlobalHandler.dock_autoh_de;
                 vis_tmr.Tick += vis_tmr_Tick;
             }
+            Visible = true;
         }
 
         private void tmr_Tick(object sender, EventArgs e)
