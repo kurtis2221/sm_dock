@@ -146,9 +146,8 @@ namespace sm_dock
                 psi.UseShellExecute = true;
                 Process.Start(psi);
             }
-            catch (Exception ex)
+            catch
             {
-                GlobalHandler.ErrorMsg("Error while starting process:\n" + ex.Message);
             }
         }
     }

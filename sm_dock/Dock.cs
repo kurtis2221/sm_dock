@@ -28,6 +28,7 @@ namespace sm_dock
         {
             try
             {
+                SuspendLayout();
                 int img_count = 0;
                 img_count = GlobalHandler.LoadIcons(this);
                 if (img_count == 0)
@@ -36,6 +37,7 @@ namespace sm_dock
                     Environment.Exit(0);
                 }
                 SetUpDock(img_count);
+                ResumeLayout();
             }
             catch (Exception ex)
             {
@@ -47,7 +49,6 @@ namespace sm_dock
 
         private void SetUpDock(int img_count)
         {
-            SuspendLayout();
             Text = GlobalHandler.PROG_NAME;
             FormBorderStyle = FormBorderStyle.None;
             StartPosition = FormStartPosition.Manual;
@@ -84,7 +85,6 @@ namespace sm_dock
             }
             ShowInTaskbar = false;
             BackColor = GlobalHandler.icon_col[GlobalHandler.IC_STATE_NORMAL].Color;
-            ResumeLayout();
             //Helpers
             GlobalHandler.width = Width;
             GlobalHandler.height = Height;

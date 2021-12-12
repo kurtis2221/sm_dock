@@ -38,13 +38,28 @@ namespace sm_dock
                             string icon_file = icon_data[ICON_ICONFILE];
                             string ext = Path.GetExtension(icon_file).ToLower();
                             Bitmap bmp;
-                            if (ext == ".ico" || ext == ".exe" || ext == ".dll")
+                            //If it fails return blank image
+                            try
                             {
-                                bmp = ExtractIcon(icon_file, icon_nm).ToBitmap();
+                                if (ext == ".ico" || ext == ".exe" || ext == ".dll")
+                                {
+                                    try
+                                    {
+                                        bmp = ExtractIcon(icon_file, icon_nm).ToBitmap();
+                                    }
+                                    catch
+                                    {
+                                        bmp = Icon.ExtractAssociatedIcon(icon_file).ToBitmap();
+                                    }
+                                }
+                                else
+                                {
+                                    bmp = Icon.ExtractAssociatedIcon(icon_file).ToBitmap();
+                                }
                             }
-                            else
+                            catch
                             {
-                                bmp = new Bitmap(icon_file);
+                                bmp = new Bitmap(32, 32);
                             }
                             bmp.Save(tmp_bw.BaseStream, ImageFormat.Png);
                             offset = (int)tmp_bw.BaseStream.Position - start;
@@ -154,14 +169,7 @@ namespace sm_dock
             IntPtr large;
             IntPtr small;
             ExtractIconEx(file, number, out large, out small, 1);
-            try
-            {
-                return Icon.FromHandle(large);
-            }
-            catch
-            {
-                return null;
-            }
+            return Icon.FromHandle(large);
         }
     }
 }
